@@ -2,7 +2,7 @@ from typing import List
 from flask import Flask, request
 
 
-# HAMMING DISTANCE FUNCTION
+# Hamming Distance Function
 def hamming_distance(s1, s2):
 
     result = 0
@@ -15,7 +15,7 @@ def hamming_distance(s1, s2):
 
 def found_i(string_set, s, d):
     for ss in string_set:
-        if d <= hamming_distance(ss, s) <= 2 * d:
+        if d < hamming_distance(ss, s) <= 2 * d:
             return ss
 
     return "not found"
@@ -29,32 +29,44 @@ def FTP_closest_string(string_set, d, si, d1):
 
     for ss in string_set:
         if hamming_distance(ss, si) > d + d1:
+            print(hamming_distance(ss, si))
             return "not found"
 
     for index, ss in enumerate(string_set):
-        if hamming_distance(ss, si) <= d:
-            pass
-        elif hamming_distance(ss, si) <= d and index == len(string_set) - 1:
+        if hamming_distance(ss, si) <= d and index == len(string_set) - 1:
+            print("primo ciclo")
             return si
+        elif hamming_distance(ss, si) <= d:
+            print("secondo ciclo")
+            continue
         else:
+            print("terzo ciclo")
             break
 
     ssi = found_i(string_set, si, d)
+    print("this is ssi")
+    print(ssi)
 
     if ssi == "not found":
+        print("sii not found")
         return "not found"
 
     p = []
     pi = []
 
-    # Instantiating p, ssi vs ssi
-    for k in range(0, len(ssi) - 1):
+    # Instantiating p, ssi vs si
+    for k in range(0, len(ssi)):
         if si[k] != ssi[k]:
             p.append(k)
+    print("This is P")
+    print(p)
 
-    # Instantiating p
-    for k in range(0, d):
+    # Instantiating pi
+    for k in range(0, d+1):
         pi.append(p[k])
+
+    print("This is pi")
+    print(pi)
 
     for k in pi:
         s_new = list(si)
