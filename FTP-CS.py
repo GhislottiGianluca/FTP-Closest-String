@@ -1,10 +1,8 @@
-from typing import List
 from flask import Flask, request
 
 
 # Hamming Distance Function
 def hamming_distance(s1, s2):
-
     result = 0
     for i in range(0, len(s1)):
         if s1[i] != s2[i]:
@@ -23,32 +21,24 @@ def found_i(string_set, s, d):
 
 # FTP algorithm for closest string (recursive approach)
 def FTP_closest_string(string_set, d, si, d1):
-
     if d1 < 0:
         return "not found"
 
     for ss in string_set:
         if hamming_distance(ss, si) > d + d1:
-            print(hamming_distance(ss, si))
             return "not found"
 
     for index, ss in enumerate(string_set):
         if hamming_distance(ss, si) <= d and index == len(string_set) - 1:
-            print("primo ciclo")
             return si
         elif hamming_distance(ss, si) <= d:
-            print("secondo ciclo")
             continue
         else:
-            print("terzo ciclo")
             break
 
     ssi = found_i(string_set, si, d)
-    print("this is ssi")
-    print(ssi)
 
     if ssi == "not found":
-        print("sii not found")
         return "not found"
 
     p = []
@@ -58,16 +48,12 @@ def FTP_closest_string(string_set, d, si, d1):
     for k in range(0, len(ssi)):
         if si[k] != ssi[k]:
             p.append(k)
-    print("This is P")
-    print(p)
 
-    # Instantiating pi
-    for k in range(0, d+1):
+    # Instantiating pi (pi subset of p, size: d+1)
+    for k in range(0, d + 1):
         pi.append(p[k])
 
-    print("This is pi")
-    print(pi)
-
+    # Recursive cycle
     for k in pi:
         s_new = list(si)
         s_new[k] = ssi[k]
@@ -78,13 +64,13 @@ def FTP_closest_string(string_set, d, si, d1):
     return "not found"
 
 
-# ---------------------------------------------------------------------------------------------------
+# ---------------------------- Flask application to test the algorithm --------------------------------------
+
 app = Flask(__name__)
 
 
-@app.route('/prova', methods=['POST'])
+@app.route('/FTP-Closest-String', methods=['POST'])
 def prova():
-
     string_set, d, s = request.json["string_set"], request.json["d"], request.json["first_string"]
 
     # string_set string length control
