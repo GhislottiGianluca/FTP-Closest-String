@@ -19,6 +19,9 @@ This allows the classification of NP-hard problems on a finer scale than in the 
 
 ### Execute the algorithm
 #### First option
+Write a data initialisation script yourself and use the functions I have written to observe the results of the algorithm.
+
+#### Second option
 Run the script:
 
       python FTP-CS.py
@@ -38,6 +41,3 @@ Finally passing as the body of the request a json of this form:
 The endpoint will return a json containing the result in this form:
 
       {"result": "str"}
-      
-#### Second option
-Write a data initialisation script yourself and use the functions I have written to observe the results of the algorithm.
