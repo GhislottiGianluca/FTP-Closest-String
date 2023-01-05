@@ -9,5 +9,6 @@ You could find a simple example on wikipedia: https://en.wikipedia.org/wiki/Clos
 
 
 ## FTP approach
-In this project, an FTP algorithm was realised by adding a parameter **k** as input, transforming the complexity of a problem as a function of these parameters.<br>
-This allows the classification of NP-hard problems on a finer scale than in the classical setting, where the complexity of a problem is only measured as a function of the number of bits in the input.
+In this project, an FTP algorithm was realised by adding a parameter **k** as input, transforming the complexity of a problem as a function of this parameter.<br>
+**k** is fixed at a small value and the growth of the function over k is relatively small then such problems can still be considered "tractable" despite their traditional classification as "intractable". The **Closest String** problem can be solved by algorithms that are exponential only in the size of a fixed parameter while polynomial in the size of the input; hence the name **fixed-parameter tractable (fpt-)algorithm**, because the problem can be solved efficiently for small values of the fixed parameter.<br>
+This allows the classification of NP-hard problems on a finer scale than in the classical setting, where the complexity of a problem is only measured as a function of the number of bits in the input.<br>
